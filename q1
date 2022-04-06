@@ -1,0 +1,43 @@
+#include <string>
+#include <vector>
+using namespace std;
+
+int N; //size of the small library for quick look up
+
+class book {
+    public:
+    book();
+    string title;
+    string author;
+    string language;
+};
+
+//constructor for book
+book::book(string t, string a, string l) {
+    title = t;
+    author = a;
+    language = l;
+}
+
+/*
+  create a small set of books to search faster
+  when new booked is searched, pop out the last recently used one 
+  (index 0 since push back is used to add items)
+*/
+vector<book> small_library(N); 
+
+/*
+  ISBN 817525766-0
+  title = 766
+  author = 7525
+  language = 81
+*/
+
+void get_book_info(string isbn) {
+    string token_t = isbn.substr(0, 1);
+    string token_a = isbn.substr(2, 5);
+    string token_l = isbn.substr(6, 8);
+    book newbook = book(title, author, language);
+    small_library.erase(small_library.begin());
+    small_library.push_back(newbook);   
+}
