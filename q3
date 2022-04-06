@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/*
+we can use array, linked list, and queue(priority)
+adding and removing in array is not efficient as it is in linked list.
+However searching for elements in array is better.
+stack with array is last in first out,
+queue is first in first out,
+
+based on how we want to store data and how we want to access them we can choose which one to use.
+if memory resources are limited, array approach might not be a good idea as it uses more stack memory,
+in this case we can use priority queue as it uses heap memory rather than stack.
+*/
+
+
+struct stack
+{
+    void *data;
+    int top;
+    int datasize; //need to know data size as it can be any type
+    int maxsize; //max size of the stack
+};
+
+struct stack* constuct(int size) {
+    struct stack *s = (struct stack*)malloc(sizeof(struct stack));
+    s->maxsize=size;
+    s->top = 0;
+    s->data = malloc(datasize * size);
+    return s;
+}
+
+void destroy(stack *s) {
+    free(s->data);
+}
+
+bool isempty(struct stack *s) {
+    return s->top == 0;
+}
+
+void *top(struct stack *s) {
+    if(isempty(s)) {
+        return;
+    }
+    return s->data[top];
+}
+
+void pop(struct stack *s) {
+    if(isempty(s)) {
+        return;
+    }
+    --(s->top);
+}
+
+void push(struct stack *s, void *add) {
+    if(s->top == s->maxsize - 1){ 
+        //cannot push more elements
+        return; 
+    }
+    ++s->top;
+    s->data[s->top] = x;
+}
